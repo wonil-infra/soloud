@@ -20,9 +20,14 @@ jobs:
 
     - name: Build Docker image
       run: |
+        # 커밋 SHA 태그 빌드
         docker build -t wonilinfra/soloud:${{ github.sha }} .
+        # latest 태그도 추가
+        docker tag wonilinfra/soloud:${{ github.sha }} wonilinfra/soloud:latest
 
     - name: Push to Docker Hub
       run: |
+        # 둘 다 푸시
         docker push wonilinfra/soloud:${{ github.sha }}
+        docker push wonilinfra/soloud:latest
 
