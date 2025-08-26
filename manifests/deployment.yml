@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: soloud-deploy
+  labels:
+    app: soloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: soloud
+  template:
+    metadata:
+      labels:
+        app: soloud
+    spec:
+      containers:
+      - name: soloud
+        image: wonilinfra/soloud:dd315a32d28d748ee3f8cf962af50ef0f9e3a2f  # ← 실제 Docker Hub에 있는 태그
+        ports:
+        - containerPort: 5000
+
